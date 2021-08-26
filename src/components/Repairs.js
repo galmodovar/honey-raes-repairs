@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from "react"
 
 export const Repairs = () => {
-    // const [customers, assignCustomers] = useState([])
+    const [customers, assignCustomers] = useState([])
 
-    // useEffect(
-    //     () => {
-    //         fetch()
-    //             .then(res => res.json())
-    //             .then(
-    //                 (customers) => { }
-    //             )
-    //     },
-    //     []
-    // )
+    useEffect(
+        () => {
+            fetch("http://localhost:8088/customers")
+                .then(res => res.json())
+                .then(
+                    (customers) => { 
+                        assignCustomers(customers)
+                    }
+                )
+        },
+        []
+    )
 
     return (
+        <>
         <h1>Honey Rae's Repair Shop</h1>
 
-        // {
-        //     customers.map(
-        //         () => { }
-        //     )
-        // }
+        {
+            customers.map(
+                (customerObject) => { 
+                    return <h2>{customerObject.name}</h2>
+                }
+            )
+        }
+        </>
     )
 }
